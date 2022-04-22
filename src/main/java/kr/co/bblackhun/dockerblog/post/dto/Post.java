@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
         name = "posts" ,
         uniqueConstraints = {@UniqueConstraint(columnNames = {"title"})}
 )
-public class POST {
+public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

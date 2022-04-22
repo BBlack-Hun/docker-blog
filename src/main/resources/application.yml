@@ -1,12 +1,12 @@
 #######################docker-blog#######################
 server:
-  port: 8080
   servlet:
-    context-path: /blog
     encoding:
       charset: UTF-8
       enabled: true
       force: true
+    context-path: /blog
+  port: 8081
 
 spring:
   thymeleaf:
@@ -16,7 +16,8 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/blog?useSSL=false&serverTimezone=Asia/Seoul
     username: root
-    password: 1q2w3e4r!
+#    password: 1q2w3e4r!
+    password: root
 
   jpa:
     open-in-view: true
