@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script th:src="@{/js/jw/jwplayer.js}"></script>
+    <script th:src="@{/js/jquery-3.2.1.js}"></script>
+</head>
+<body>
+    <div id="player">Loading the player...</div>
+    <script>
+        $(document).ready(function () {
+            var code1 = "4ofux18f5c";
+            var code2 = "0";
+            var code3 = "false";
+            var extra_code = "";
+            var segment_prefix = "live2";
+
+            var waitBufferTime = 4500;
+            var isWaitBuffer = true;
+
+            // 일반스포츠 - 버퍼링초기화 제거
+            if(code3 != "" && code3 != null && code3 != "false"){
+                isWaitBuffer = false;
+            }
+
+            // 단독스포츠 - 버퍼링초기화 제거 code1 == "sdmgv7y53u" || code1 == "j8wh89g7p6" ||
+            if(code1 == "q856zw58wh" || code1 == "ocky76uxe6" || code1 == "05zkuptq1o" || code1 == "hy6yj85tde" || code1 == "v9mfnhth9g" || code1 == "fod9pgk24j" || code1 == "4zvvla8448" || code1 == "j0wofb14ef"){
+                isWaitBuffer = false;
+            }
+
+            // 일부 최고화질 - 버퍼링초기화 제거
+            if(code2 == '1'){
+                if(code1 == 'vipk8s918q' || code1 == 'sdmgv7y53u' || code1 == 'j8wh89g7p6' || code1 == '5pb6uqm5gr' || code1 == '4ofux18f5c'){
+                    isWaitBuffer = false;
+                }
+                if(code1 == '4ofux18f5c'){
+                    extra_code = '_a2'; // _a2
+                }
+            }else{
+                if(code1 == '4ofux18f5c'){
+                    extra_code = '_a2'; // _a2
+                }
+            }
+
+
+            var p2pConfig = {
+                live: true,
+                announce: "https://hk.swarmcloud.net/v1",
+                token: 'uhBH0xhnR',
+                swFile: '../../sw2.js',
+                announceLocation: 'hk',
+                logLevel: false,
+                channelIdPrefix: "tvchak",
+                channelId: function (m3u8Url) {
+                    return "K1-" + code1 + "-" + code2 + extra_code;
+                },
+                segmentId: function (streamId, sn, url) {
+                    return segment_prefix + sn;
+                },
+                showSlogan: false
+            }
+
+            var jwConfig = {
+                autostart: "true",
+                sources: [{
+                    file: 'https://tvn-seezn.pip.cjenm.com/tvn/_definst_/s5/playlist.m3u8?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MjI4OTQ5OTUsInBhdGgiOiIvdHZuL19kZWZpbnN0Xy9zNSIsInVubyI6IjE2MjI4OTQ2OTU0MzQzNTU1NSIsImlhdCI6MTYyMjg5NDY5NX0.uTI9slMSRoAbTQ0zGWoEWepnugD9iC-LumyD4dUMJSE',
+                    // file: 'https://tvn-seezn.pip.cjenm.com/tvn/_definst_/s5/playlist.m3u8?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MjI4OTQ5OTUsInBhdGgiOiIvdHZuL19kZWZpbnN0Xy9zNSIsInVubyI6IjE2MjI4OTQ2OTU0MzQzNTU1NSIsImlhdCI6MTYyMjg5NDY5NX0.uTI9slMSRoAbTQ0zGWoEWepnugD9iC-LumyD4dUMJSE',
+                    type: "application/vnd.apple.mpegurl"
+                }],
+                width: "100%",
+                stretching: "uniform",
+                aspectratio: "16:9",
+                primary: "html5",
+                cast: {},
+                mute: false,
+                volume: 50,
+                hlsjsConfig: {
+                    debug: false,
+                    maxBufferSize: 0,
+                    maxBufferLength: 10,
+                    liveSyncDurationCount: 10,
+                    p2pConfig,
+                }
+            }
+            // Setup the player
+            jwplayer.key = "uoW6qHjBL3KNudxKVnwa3rt5LlTakbko9e6aQ6VUyKQ=";
+            const player = jwplayer('player').setup(jwConfig);
+        });
+    </script>
+</body>
+</html>
