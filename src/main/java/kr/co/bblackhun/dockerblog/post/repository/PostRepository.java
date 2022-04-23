@@ -1,6 +1,6 @@
 package kr.co.bblackhun.dockerblog.post.repository;
 
-import kr.co.bblackhun.dockerblog.post.dto.Post;
+import kr.co.bblackhun.dockerblog.post.entity.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

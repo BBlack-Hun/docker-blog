@@ -6,7 +6,7 @@ server:
       enabled: true
       force: true
     context-path: /blog
-  port: 8081
+  port: 8080
 
 spring:
   thymeleaf:
@@ -14,10 +14,10 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/blog?useSSL=false&serverTimezone=Asia/Seoul
+    url: jdbc:mysql://localhost:3306/blog?allowPublicKeyRetrieval=true&useSSL=false
     username: root
-#    password: 1q2w3e4r!
-    password: root
+    password: 1q2w3e4r!
+#    password: root
 
   jpa:
     open-in-view: true
