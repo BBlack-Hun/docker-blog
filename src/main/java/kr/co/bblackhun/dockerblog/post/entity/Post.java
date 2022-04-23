@@ -1,6 +1,5 @@
-package kr.co.bblackhun.dockerblog.post.dto;
+package kr.co.bblackhun.dockerblog.post.entity;
 
-import ch.qos.logback.classic.db.names.ColumnName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
