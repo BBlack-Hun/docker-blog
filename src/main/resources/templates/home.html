@@ -3,35 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script th:src="@{/js/jw/jwplayer.js}"></script>
-    <script>jwplayer.key='iiL9xxalkP7di2nLZ3tPLw0NLBCHdHBe8i3QDQ==';</script>
+<!--    <script th:src="@{/js/jw/jwplayer.js}"></script>-->
+
     <script th:src="@{/js/jquery-3.2.1.js}"></script>
 </head>
 <body>
     <div id="player">Loading the player...</div>
+    <button type="button" onclick="changeUrl('https://www.jobstv24.com/liveedge/live34/playlist.m3u8?site=yjtv&ch=live34&pm=P&wowzatokenstarttime=1650697529&wowzatokenendtime=1650708329&wowzatokenCustomParameter=live34&wowzatokenhash=z7xhxEO8m5PNqDG0FRHvL0zBGowr82kmeQK9AjGjOlw=');">YTN</button>
+    <button type="button" onclick="changeUrl('https://www.mvptv24.com/liveedge/live07/playlist.m3u8?site=yjtv&ch=live07&pm=P&wowzatokenstarttime=1650696870&wowzatokenendtime=1650707670&wowzatokenCustomParameter=live07&wowzatokenhash=5f_Bg2709pswqFFVnO2XFiHczbXkswjTZIYvnD28-qM=');">MBC</button>
+    <script src="https://cdn.jwplayer.com/libraries/If8OwvrW.js"></script>
+    <script>jwplayer.key='iiL9xxalkP7di2nLZ3tPLw0NLBCHdHBe8i3QDQ==';</script>
     <script>
-        var tokenJson = {"status":"success","authid":"https://tvn-seezn.pip.cjenm.com/tvn/_definst_/s5/playlist.m3u8?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MjI4OTQ5OTUsInBhdGgiOiIvdHZuL19kZWZpbnN0Xy9zNSIsInVubyI6IjE2MjI4OTQ2OTU0MzQzNTU1NSIsImlhdCI6MTYyMjg5NDY5NX0.uTI9slMSRoAbTQ0zGWoEWepnugD9iC-LumyD4dUMJSE"};
-        var tokenJson2 = {"status":"success","authid":"https://p2xu7ctvpt.freestream24.com/live2/5pb6uqm5gr/playlist.m3u8?w2q4701wgSBaxx3XD4aSQrEkEUvV58jIbkP71ReQefMFD_ZofHu0JCm8BEPehIDova9FyPEJIdZu9eqJe6JUr4w7vvkUVeXdZKgbqVIxmbJFKgM4wg-H-0q5FJfDfXWaG97hBjWSmWuVaIXv_qxBOgPdliinoDTNAomAfYdh_TsMSSckCo-il9asnqcC8YP1QlcjGXpCzf34s5m-1dU5Hs3FXFGcjYnuAu1NmXJdsA&cache=false"};
-        jwplayer('player').setup({
-
-            width: "100%",
-
-            height: "406",
-
-            primary: "flash",
-
-            autostart: "true",
-
-            //repeat: 'always',
-
-            androidhls:true,
-
-            aspectratio: "16:9",
+        var jsConfig = {
             sources: [{
-                file: tokenJson2.authid,
-                type: "application/vnd.apple.mpegurl"
+                file: 'https://www.mvptv24.com/liveedge/live07/playlist.m3u8?site=yjtv&ch=live07&pm=P&wowzatokenstarttime=1650696870&wowzatokenendtime=1650707670&wowzatokenCustomParameter=live07&wowzatokenhash=5f_Bg2709pswqFFVnO2XFiHczbXkswjTZIYvnD28-qM=',
             }],
-        });
+            width: "100%",
+            // image: "../../assets/images/background.jpg?0.000036",
+            stretching: "exactfit",
+            primary: "flash",
+            hlshtml: true,
+            aspectratio: "16:12",
+            autostart: true
+        }
+
+        function changeUrl(data) {
+            jsConfig = {
+                sources: [{
+                    file: data,
+                }],
+                width: "100%",
+                // image: "../../assets/images/background.jpg?0.000036",
+                stretching: "exactfit",
+                primary: "flash",
+                hlshtml: true,
+                aspectratio: "16:12",
+                autostart: true
+            }
+
+            var player = jwplayer("player");
+            player.setup(jsConfig).on("ready", function () {
+                if ($(window.parent.document).find("#player" + "1").length !== 0) {
+                    $(window.parent.document).find("#player" + "1").closest(".stream_box").height(document.body.scrollHeight);
+                }
+            }).on("error", function (event) {
+                if (event.message === "Error loading media: File could not be played" || event.message === "Cannot load M3U8: You do not have permission to access this content") {
+                    $(".jw-title .jw-title-primary").text("★로그인 또는 새로고침을 해주세요.★").css({
+                        "text-align": "center",
+                        "font-size": "30px"
+                    })
+                }
+            });
+        }
+
+        (function ($) {
+//        $.support.cors = true;
+            $(document).ready(function () {
+                var player = jwplayer("player");
+                player.setup(jsConfig).on("ready", function () {
+                    if ($(window.parent.document).find("#player" + "1").length !== 0) {
+                        $(window.parent.document).find("#player" + "1").closest(".stream_box").height(document.body.scrollHeight);
+                    }
+                }).on("error", function (event) {
+                    if (event.message === "Error loading media: File could not be played" || event.message === "Cannot load M3U8: You do not have permission to access this content") {
+                        $(".jw-title .jw-title-primary").text("★로그인 또는 새로고침을 해주세요.★").css({
+                            "text-align": "center",
+                            "font-size": "30px"
+                        })
+                    }
+                });
+            });
+        })(jQuery);
     </script>
 </body>
 </html>
