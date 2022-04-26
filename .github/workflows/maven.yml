@@ -28,5 +28,6 @@ jobs:
           # synchronous execution if multiple hosts
           timeout: 40s
           script: |
-            cd docker3 | echo "테스트 출력"
+            echo "테스트 출력"
+            echo pwd
 
