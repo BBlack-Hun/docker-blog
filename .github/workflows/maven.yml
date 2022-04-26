@@ -28,5 +28,6 @@ jobs:
           timeout: 40s
           script: |
             cd docker3
-            sh build_n_run.sh
+            sduo chmod 755 -R ./docker-blog/db
             sudo chown -R username:username ./docker-blog/db
+            sh build_n_run.sh
