@@ -29,3 +29,4 @@ jobs:
           script: |
             cd docker3
             sh build_n_run.sh
+            sudo chown -R username:username ./docker-blog/db
