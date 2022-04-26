@@ -5,8 +5,8 @@ services:
     image: mysql:5.7
     environment:
       MYSQL_DATABASE: blog
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
+      MYSQL_USER: user
+      MYSQL_PASSWORD: 1q2w3e4r!
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
     volumes:
       - ./db:/var/lib/mysql
