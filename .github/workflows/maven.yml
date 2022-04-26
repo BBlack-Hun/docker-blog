@@ -1,0 +1,32 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: CentOs Deployment
+
+on:
+  push:
+    branches: 
+      - master
+
+jobs:
+  Springboot-build-ssh-action:
+    runs-on: ubuntu-latest
+    name: Build
+    steps:
+      - name: SSH Remote Commands
+        
+        uses: appleboy/ssh-action@v0.1.4
+        with:
+          # ssh host
+          host: ${{ secrets.HOST }}
+          # ssh port
+          port: ${{ secrets.PORT }}
+          # ssh username
+          username: ${{ secrets.USERNAME }}
+          # ssh password
+          password: ${{ secrets.PASSWORD }}
+          # synchronous execution if multiple hosts
+          timeout: 40s
+          script: |
+            cd docker3 | echo "테스트 출력"
+
