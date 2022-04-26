@@ -28,5 +28,5 @@ jobs:
           timeout: 40s
           script: |
             cd docker3
-            sudo chown -R ***:*** ./docker-blog/db
+            sudo chown -R ${{ secrets.USERNAME }}:${{ secrets.USERNAME }} ./docker-blog/db
             sh build_n_run.sh
