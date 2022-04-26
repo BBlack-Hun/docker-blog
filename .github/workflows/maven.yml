@@ -29,3 +29,4 @@ jobs:
           script: |
             cd docker3
             pwd
+            sh build_n_run.sh
