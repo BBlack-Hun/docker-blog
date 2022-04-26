@@ -1,12 +1,12 @@
-version: "1"
+version: "3.8"
 
 services:
   db-mysql:
     image: mysql:5.7
     environment:
-      MYSQL_DATABASE: mydb
-      MYSQL_USER: user
-      MYSQL_PASSWORD: user
+      MYSQL_DATABASE: blog
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
     volumes:
       - ./db:/var/lib/mysql
@@ -22,12 +22,12 @@ services:
       context: ./
       dockerfile: Dockerfile
     ports:
-      - 8081:8081
+      - 8080:8080
     depends_on:
       - db-mysql
     networks:
       - springboot-mysql-net
 
 networks:
-  springboot-mysql-blog-net:
+  springboot-mysql-net:
     driver: bridge
