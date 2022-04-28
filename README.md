@@ -1,20 +1,6 @@
 # docker-blog
 
 
-[테스트입니다.](#1테스트입니다) <br>
+## 도커를 이용한 스프링부트 블로그
 
-
-
-<br>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-
-
-
-
-
-
-
-
-
-# 1.테스트입니다.
+## git action을 이용한 자동 배포
