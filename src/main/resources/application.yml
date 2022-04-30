@@ -14,8 +14,8 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://61.74.241.175:33306/blog?allowPublicKeyRetrieval=true&useSSL=false
-#    url: jdbc:mysql://db-mysql:3306/blog?allowPublicKeyRetrieval=true&useSSL=false
+#    url: jdbc:mysql://61.74.241.175:33306/blog?allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://db-mysql:3306/blog?allowPublicKeyRetrieval=true&useSSL=false
     username: user
 #    password: 1q2w3e4r!
     password: 1q2w3e4r!
