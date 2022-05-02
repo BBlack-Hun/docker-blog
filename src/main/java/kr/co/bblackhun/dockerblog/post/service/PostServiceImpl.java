@@ -3,6 +3,7 @@ package kr.co.bblackhun.dockerblog.post.service;
 import kr.co.bblackhun.dockerblog.post.entity.Post;
 import kr.co.bblackhun.dockerblog.post.payload.PostDto;
 import kr.co.bblackhun.dockerblog.post.repository.PostRepository;
+import kr.co.bblackhun.dockerblog.system.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +36,12 @@ public class PostServiceImpl implements PostService{
 
     }
 
+    @Override
+    public PostDto getpostById(long id) {
+        Post post = postRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Post", "id", id));
+        return mapToDTO(post);
+    }
+
     // convert Entity into DTO
     private PostDto mapToDTO(Post post) {
         PostDto postDto = new PostDto();
@@ -55,5 +62,6 @@ public class PostServiceImpl implements PostService{
 
         return post;
     }
+
 
 }
