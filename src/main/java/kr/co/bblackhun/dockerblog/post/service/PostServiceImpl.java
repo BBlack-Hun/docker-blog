@@ -2,9 +2,13 @@ package kr.co.bblackhun.dockerblog.post.service;
 
 import kr.co.bblackhun.dockerblog.post.entity.Post;
 import kr.co.bblackhun.dockerblog.post.payload.PostDto;
+import kr.co.bblackhun.dockerblog.post.payload.PostResponse;
 import kr.co.bblackhun.dockerblog.post.repository.PostRepository;
 import kr.co.bblackhun.dockerblog.system.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,11 +33,29 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public List<PostDto> getAllPosts() {
+    public PostResponse getAllPosts(int page, int pageSize) {
 
-        List<Post> posts = postRepository.findAll();
-        return posts.stream().map(post -> mapToDTO(post)).collect(Collectors.toList());
 
+        // create pageable instance
+        Pageable pageable = PageRequest.of(page, pageSize);
+
+        Page<Post> posts = postRepository.findAll(pageable);
+
+        // get content for page objcet
+        List<Post> listOfPosts = posts.getContent();
+
+//        return listOfPosts.stream().map(post -> mapToDTO(post)).collect(Collectors.toList());
+        List<PostDto> contents = listOfPosts.stream().map(post-> mapToDTO(post)).collect(Collectors.toList());
+
+        PostResponse postResponse = new PostResponse();
+        postResponse.setContent(contents);
+        postResponse.setPageNo(posts.getNumber());
+        postResponse.setPageSize(posts.getSize());
+        postResponse.setTotlaElements(posts.getTotalElements());
+        postResponse.setTotalPages(posts.getTotalPages());
+        postResponse.setLast(posts.isLast());
+
+        return postResponse;
     }
 
     @Override

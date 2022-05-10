@@ -1,6 +1,7 @@
 package kr.co.bblackhun.dockerblog.post.controller;
 
 import kr.co.bblackhun.dockerblog.post.payload.PostDto;
+import kr.co.bblackhun.dockerblog.post.payload.PostResponse;
 import kr.co.bblackhun.dockerblog.post.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,8 +24,11 @@ public class PostController {
 
     // get all posts rest api
     @GetMapping
-    public List<PostDto> getAllPosts() {
-        return postService.getAllPosts();
+    public PostResponse getAllPosts(
+            @RequestParam(value = "page", defaultValue = "0", required = false) int page,
+            @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize
+    ){
+        return postService.getAllPosts(page, pageSize);
     }
 
     // get post by id
