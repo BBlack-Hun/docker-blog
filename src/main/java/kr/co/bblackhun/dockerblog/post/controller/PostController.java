@@ -27,9 +27,10 @@ public class PostController {
     public PostResponse getAllPosts(
             @RequestParam(value = "page", defaultValue = "0", required = false) int page,
             @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize,
-            @RequestParam(value = "sort", defaultValue = "id", required = false) String sort
+            @RequestParam(value = "sort", defaultValue = "id", required = false) String sort,
+            @RequestParam(value = "sortDir", defaultValue = "asc", required = false) String sortDir
     ){
-        return postService.getAllPosts(page, pageSize, sort);
+        return postService.getAllPosts(page, pageSize, sort, sortDir);
     }
 
     // get post by id
