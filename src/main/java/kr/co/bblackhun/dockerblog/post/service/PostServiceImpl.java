@@ -5,6 +5,9 @@ import kr.co.bblackhun.dockerblog.post.payload.PostDto;
 import kr.co.bblackhun.dockerblog.post.repository.PostRepository;
 import kr.co.bblackhun.dockerblog.system.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,10 +32,18 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public List<PostDto> getAllPosts() {
+    public List<PostDto> getAllPosts(int page, int pageSize) {
 
-        List<Post> posts = postRepository.findAll();
-        return posts.stream().map(post -> mapToDTO(post)).collect(Collectors.toList());
+
+        // create pageable instance
+        Pageable pageable = PageRequest.of(page, pageSize);
+
+        Page<Post> posts = postRepository.findAll(pageable);
+
+        // get content for page objcet
+        List<Post> listOfPosts = posts.getContent();
+
+        return listOfPosts.stream().map(post -> mapToDTO(post)).collect(Collectors.toList());
 
     }
 
