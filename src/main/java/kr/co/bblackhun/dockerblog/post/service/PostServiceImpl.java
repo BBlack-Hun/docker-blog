@@ -2,6 +2,7 @@ package kr.co.bblackhun.dockerblog.post.service;
 
 import kr.co.bblackhun.dockerblog.post.entity.Post;
 import kr.co.bblackhun.dockerblog.post.payload.PostDto;
+import kr.co.bblackhun.dockerblog.post.payload.PostResponse;
 import kr.co.bblackhun.dockerblog.post.repository.PostRepository;
 import kr.co.bblackhun.dockerblog.system.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +33,7 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public List<PostDto> getAllPosts(int page, int pageSize) {
+    public PostResponse getAllPosts(int page, int pageSize) {
 
 
         // create pageable instance
@@ -43,8 +44,18 @@ public class PostServiceImpl implements PostService{
         // get content for page objcet
         List<Post> listOfPosts = posts.getContent();
 
-        return listOfPosts.stream().map(post -> mapToDTO(post)).collect(Collectors.toList());
+//        return listOfPosts.stream().map(post -> mapToDTO(post)).collect(Collectors.toList());
+        List<PostDto> contents = listOfPosts.stream().map(post-> mapToDTO(post)).collect(Collectors.toList());
 
+        PostResponse postResponse = new PostResponse();
+        postResponse.setContent(contents);
+        postResponse.setPageNo(posts.getNumber());
+        postResponse.setPageSize(posts.getSize());
+        postResponse.setTotlaElements(posts.getTotalElements());
+        postResponse.setTotalPages(posts.getTotalPages());
+        postResponse.setLast(posts.isLast());
+
+        return postResponse;
     }
 
     @Override

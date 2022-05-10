@@ -1,6 +1,7 @@
 package kr.co.bblackhun.dockerblog.post.service;
 
 import kr.co.bblackhun.dockerblog.post.payload.PostDto;
+import kr.co.bblackhun.dockerblog.post.payload.PostResponse;
 
 import java.util.List;
 
@@ -8,7 +9,7 @@ public interface PostService {
 
     PostDto createPost(PostDto postDto);
 
-    List<PostDto> getAllPosts(int page, int pageSize);
+    PostResponse getAllPosts(int page, int pageSize);
 
     PostDto getpostById(long id);
 
