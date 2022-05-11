@@ -6,7 +6,7 @@ server:
       enabled: true
       force: true
     context-path: /blog
-  port: 8080
+  port: 8081
 
 spring:
   thymeleaf:
