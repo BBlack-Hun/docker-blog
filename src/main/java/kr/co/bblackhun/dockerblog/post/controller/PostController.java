@@ -3,6 +3,7 @@ package kr.co.bblackhun.dockerblog.post.controller;
 import kr.co.bblackhun.dockerblog.post.payload.PostDto;
 import kr.co.bblackhun.dockerblog.post.payload.PostResponse;
 import kr.co.bblackhun.dockerblog.post.service.PostService;
+import kr.co.bblackhun.dockerblog.system.utils.AppConstant;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,11 +26,12 @@ public class PostController {
     // get all posts rest api
     @GetMapping
     public PostResponse getAllPosts(
-            @RequestParam(value = "page", defaultValue = "0", required = false) int page,
-            @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize,
-            @RequestParam(value = "sort", defaultValue = "id", required = false) String sort
+            @RequestParam(value = "page", defaultValue = AppConstant.DEFAULT_PAGE_NUMBER, required = false) int page,
+            @RequestParam(value = "pageSize", defaultValue = AppConstant.DEFAULT_PAGE_SIZE, required = false) int pageSize,
+            @RequestParam(value = "sort", defaultValue = AppConstant.DEFAULT_SORT_BY, required = false) String sort,
+            @RequestParam(value = "sortDir", defaultValue = AppConstant.DEFAULT_SORT_DIRECTION, required = false) String sortDir
     ){
-        return postService.getAllPosts(page, pageSize, sort);
+        return postService.getAllPosts(page, pageSize, sort, sortDir);
     }
 
     // get post by id

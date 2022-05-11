@@ -1,5 +1,6 @@
 package kr.co.bblackhun.dockerblog.post.entity;
 
+import kr.co.bblackhun.dockerblog.comment.entity.Comment;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -28,6 +31,9 @@ public class Post {
     private String description;
     @Column(name = "content", nullable = false )
     private String content;
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    private Set<Comment> comments = new HashSet<>();
 
     @CreatedDate
     private LocalDateTime createdAt = LocalDateTime.now();
