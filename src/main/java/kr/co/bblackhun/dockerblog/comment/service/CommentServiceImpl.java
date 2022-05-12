@@ -17,7 +17,7 @@ public class CommentServiceImpl implements CommentService {
     private final PostRepository postRepository;
 
     @Override
-    public CommentDto cerateCommnet(long postId, CommentDto commentDto) {
+    public CommentDto createComment(long postId, CommentDto commentDto) {
 
         Comment comment = mapToEntity(commentDto);
 
