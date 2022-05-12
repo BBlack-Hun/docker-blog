@@ -4,8 +4,11 @@ import kr.co.bblackhun.dockerblog.post.entity.Post;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -26,5 +29,10 @@ public class Comment {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id", nullable = false)
     private Post post;
+
+    @CreatedDate
+    private LocalDateTime createdAt = LocalDateTime.now();
+    @LastModifiedDate
+    private LocalDateTime updatedAt = LocalDateTime.now();
 
 }
