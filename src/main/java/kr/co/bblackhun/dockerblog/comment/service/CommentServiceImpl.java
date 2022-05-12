@@ -24,7 +24,7 @@ public class CommentServiceImpl implements CommentService {
         // retrieve post entity by id
         Post post = postRepository.findById(postId).orElseThrow(() -> new ResourceNotFoundException("Post", "id", postId));
 
-        // set post to commnet entity
+        // set post to comment entity
         comment.setPost(post);
 
         Comment newComment = commentRepository.save(comment);
