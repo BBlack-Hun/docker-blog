@@ -8,3 +8,8 @@
 - pull request
 - git action으로 인한 cicd
 - docker-compose를 이용한 컨테이너 형태로 배포
+
+
+## Post model
+
+## Comment model
