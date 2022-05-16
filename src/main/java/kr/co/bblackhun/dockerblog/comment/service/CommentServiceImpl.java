@@ -9,6 +9,9 @@ import kr.co.bblackhun.dockerblog.system.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class CommentServiceImpl implements CommentService {
@@ -32,6 +35,15 @@ public class CommentServiceImpl implements CommentService {
         return mapToDTO(newComment);
     }
 
+    @Override
+    public List<CommentDto> getCommentsByPostId(long postId) {
+
+        // retrieve comments by postId
+        List<Comment> comments = commentRepository.findByPostId(postId);
+
+        return comments.stream().map(comment -> mapToDTO(comment)).collect(Collectors.toList());
+    }
+
     private CommentDto mapToDTO(Comment comment) {
         CommentDto commentDto = new CommentDto();
         commentDto.setId(comment.getId());
@@ -49,4 +61,5 @@ public class CommentServiceImpl implements CommentService {
         comment.setBody(commentDto.getBody());
         return comment;
     }
+
 }
