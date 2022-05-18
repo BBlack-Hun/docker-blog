@@ -8,6 +8,7 @@ import kr.co.bblackhun.dockerblog.post.repository.PostRepository;
 import kr.co.bblackhun.dockerblog.system.exception.BlogAPIException;
 import kr.co.bblackhun.dockerblog.system.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,8 @@ public class CommentServiceImpl implements CommentService {
 
     private final CommentRepository commentRepository;
     private final PostRepository postRepository;
+
+    private final ModelMapper modelMapper;
 
     @Override
     public CommentDto createComment(long postId, CommentDto commentDto) {
