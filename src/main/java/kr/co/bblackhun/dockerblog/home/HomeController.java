@@ -17,7 +17,7 @@ public class HomeController {
     }
 
     @CrossOrigin()
-    @GetMapping("/test")
+    @GetMapping("test")
     public String Home2() {
         return "home2.html";
     }
