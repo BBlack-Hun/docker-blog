@@ -15,4 +15,10 @@ public class HomeController {
     public String Home() {
         return "home.html";
     }
+
+    @CrossOrigin()
+    @GetMapping("test")
+    public String Home2() {
+        return "home2.html";
+    }
 }
