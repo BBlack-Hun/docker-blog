@@ -2,6 +2,8 @@ package kr.co.bblackhun.dockerblog.post.payload;
 
 import kr.co.bblackhun.dockerblog.comment.payload.CommentDto;
 import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -30,6 +32,8 @@ public class PostDto {
     private String content;
     private Set<CommentDto> comments;
 
+    @CreatedDate
     private LocalDateTime createdAt;
+    @LastModifiedDate
     private LocalDateTime updatedAt;
 }
