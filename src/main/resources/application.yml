@@ -35,6 +35,11 @@ spring:
       hibernate.format_sql: true
       dialect: org.hibernate.dialect.MYSQL5InnoDBDialect
 
+  security:
+    user:
+      name: user
+      password: user
+      roles: ADMIN
 
 #  flyway:
 #    enabled: true
@@ -44,4 +49,7 @@ spring:
 logging:
   level:
     root: info
-    org.springframework.web: debug
+    org.springframework:
+      web: debug
+      security: debug
+
