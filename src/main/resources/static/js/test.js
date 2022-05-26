@@ -29,8 +29,6 @@ const calculate = (function () {
         $('#klay').append(`실시간 KLAY 가격 : ${klay}`);
         $('#test').html(`실시간 KLAY 가격 : $${res}`);
 
-
-
         $("#coin").on("propertychange change keyup paste input", function() {
             currentVal = $(this).val();
         });
