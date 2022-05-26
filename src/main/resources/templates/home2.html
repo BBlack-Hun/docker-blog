@@ -12,6 +12,21 @@
     <p id="dollor"></p>
     <p id="klay"></p>
     <p id="test"></p>
+    <div style="display: flex;">
+        <input id="coin" name="coin" style="text-align: right"><p>개</p>
+        &nbsp;
+        <input id="money" name="money" style="text-align: right" readonly><p>원</p>
+    </div>
+
     <script th:src="@{/js/test.js}"></script>
+    <script>
+        $("#coin").on("propertychange change keyup paste input", function() {
+            var currentVal = $(this).val();
+
+            // coin수를 입력 받았을때, 코인 가격의 변동에 실시간으로 대응이 가능해야 한다.
+
+            $('#money').val()
+        });
+    </script>
 </body>
 </html>
