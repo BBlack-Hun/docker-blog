@@ -1,0 +1,1 @@
+url = jdbc:mysql://61.74.241.175:33306/blog?allowPublicKeyRetrieval=true&useSSL=false
