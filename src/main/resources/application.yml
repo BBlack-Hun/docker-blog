@@ -47,3 +47,7 @@ logging:
       web: debug
       security: debug
 
+#jwt
+app:
+  jwt-secret: JWTSECRETKEY
+  jwt-expiration-milliseconds: 604800000
