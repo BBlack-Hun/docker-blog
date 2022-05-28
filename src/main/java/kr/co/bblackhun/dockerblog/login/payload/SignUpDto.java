@@ -1,5 +1,8 @@
 package kr.co.bblackhun.dockerblog.login.payload;
 
+import lombok.Data;
+
+@Data
 public class SignUpDto {
     private String name;
     private String username;
