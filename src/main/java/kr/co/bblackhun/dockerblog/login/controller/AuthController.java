@@ -1,7 +1,9 @@
 package kr.co.bblackhun.dockerblog.login.controller;
 
+import kr.co.bblackhun.dockerblog.login.payload.JWTAuthResponse;
 import kr.co.bblackhun.dockerblog.login.payload.LoginDto;
 import kr.co.bblackhun.dockerblog.login.payload.SignUpDto;
+import kr.co.bblackhun.dockerblog.system.security.JwtTokenProvider;
 import kr.co.bblackhun.dockerblog.user.entity.Role;
 import kr.co.bblackhun.dockerblog.user.entity.User;
 import kr.co.bblackhun.dockerblog.user.repository.RoleRepository;
@@ -37,14 +39,21 @@ public class AuthController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private JwtTokenProvider tokenProvider;
+
     @PostMapping("/sign-in")
-    public ResponseEntity<String> authenticationUser(@RequestBody LoginDto loginDto) {
+    public ResponseEntity<JWTAuthResponse> authenticationUser(@RequestBody LoginDto loginDto) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 loginDto.getUsernameOrEmail(), loginDto.getPassword()));
 
 
        SecurityContextHolder.getContext().setAuthentication(authentication);
-       return new ResponseEntity<>("User signed-in successfully!.", HttpStatus.OK);
+
+       // get token from tokenProvider
+        String token = tokenProvider.generateToken(authentication);
+
+       return ResponseEntity.ok(new JWTAuthResponse(token));
 
     }
 
