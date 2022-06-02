@@ -43,13 +43,13 @@ public class PostController {
         return postService.getAllPosts(page, pageSize, sort, sortDir);
     }
 
-    // get post by id
-    @GetMapping(value = "/v1/posts/{id}", params = "version=1")
+    // get post by id (use version header)
+    @GetMapping(value = "/v1/posts/{id}", headers = "X-API-VERSION=1")
     public ResponseEntity<PostDto> getPostByIdV1(@PathVariable(name= "id") long id) {
         return ResponseEntity.ok(postService.getPostById(id));
     }
 
-    // get post by id
+    // get post by id (use version query)
     @GetMapping(value = "/v2/posts/{id}", params = "version=2")
     public ResponseEntity<PostDtoV2> getPostByIdV2(@PathVariable(name= "id") long id) {
         PostDto postDto = postService.getPostById(id);
