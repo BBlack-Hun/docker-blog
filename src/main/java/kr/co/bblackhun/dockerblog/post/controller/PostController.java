@@ -43,8 +43,8 @@ public class PostController {
         return postService.getAllPosts(page, pageSize, sort, sortDir);
     }
 
-    // get post by id (use version header)
-    @GetMapping(value = "/v1/posts/{id}", headers = "X-API-VERSION=1")
+    // get post by id (use version header -> use produces(application/vnd.javaguides.v1+json))
+    @GetMapping(value = "/v1/posts/{id}", produces = "application/vnd.javaguides.v1+json")
     public ResponseEntity<PostDto> getPostByIdV1(@PathVariable(name= "id") long id) {
         return ResponseEntity.ok(postService.getPostById(id));
     }
