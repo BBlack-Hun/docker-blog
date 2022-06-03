@@ -12,6 +12,10 @@ spring:
   thymeleaf:
     cache: false
 
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
 #    url: jdbc:mysql://61.74.241.175:33306/blog?allowPublicKeyRetrieval=true&useSSL=false
@@ -49,5 +53,5 @@ logging:
 
 #jwt
 app:
-  jwt-secret: JWTSECRETKEY
+  jwt-secret: "JWTSECRETKEY"
   jwt-expiration-milliseconds: 604800000
