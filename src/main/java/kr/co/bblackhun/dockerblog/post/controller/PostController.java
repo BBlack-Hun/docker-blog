@@ -1,5 +1,7 @@
 package kr.co.bblackhun.dockerblog.post.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import kr.co.bblackhun.dockerblog.post.payload.PostDto;
 import kr.co.bblackhun.dockerblog.post.payload.PostResponse;
 import kr.co.bblackhun.dockerblog.post.service.PostService;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+@Api(value = "CRUD REST APIs for Post resources")
 @RestController
 @RequestMapping("/api/v1/posts")
 public class PostController {
@@ -21,6 +24,7 @@ public class PostController {
         this.postService = postService;
     }
 
+    @ApiOperation(value = "Create Post REST API")
     @PreAuthorize("hasRole('ADMIN')")
     // create blog post res api
     @PostMapping(value = "/")
@@ -29,6 +33,7 @@ public class PostController {
     }
 
     // get all posts rest api
+    @ApiOperation(value = "Get All Posts REST API")
     @GetMapping
     public PostResponse getAllPosts(
             @RequestParam(value = "page", defaultValue = AppConstant.DEFAULT_PAGE_NUMBER, required = false) int page,
@@ -40,11 +45,13 @@ public class PostController {
     }
 
     // get post by id (use version header -> use produces(application/vnd.javaguides.v1+json))
+    @ApiOperation(value = "Get Post By Id REST API")
     @GetMapping(value = "/{id}", produces = "application/vnd.javaguides.v1+json")
     public ResponseEntity<PostDto> getPostByIdV1(@PathVariable(name= "id") long id) {
         return ResponseEntity.ok(postService.getPostById(id));
     }
 
+    @ApiOperation(value = "Update Post By Id REST API")
     @PreAuthorize("hasRole('ADMIN')")
     // update post by id
     @PutMapping("/{id}")
@@ -54,6 +61,7 @@ public class PostController {
         return  ResponseEntity.ok(postResponse);
     }
 
+    @ApiOperation(value = "Delete Post By Id REST API")
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletePOst(@PathVariable(name = "id") long id) {

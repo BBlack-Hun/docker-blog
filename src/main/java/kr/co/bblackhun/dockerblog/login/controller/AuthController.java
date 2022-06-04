@@ -1,5 +1,7 @@
 package kr.co.bblackhun.dockerblog.login.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import kr.co.bblackhun.dockerblog.login.payload.JWTAuthResponse;
 import kr.co.bblackhun.dockerblog.login.payload.LoginDto;
 import kr.co.bblackhun.dockerblog.login.payload.SignUpDto;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collections;
 
+@Api(value = "Auth controller exposes signin and signup REST API's")
 @RestController
 @RequestMapping("/api/v1/auth")
 public class AuthController {
@@ -42,6 +45,7 @@ public class AuthController {
     @Autowired
     private JwtTokenProvider tokenProvider;
 
+    @ApiOperation(value = "REST API to Register or Signup to Blog app")
     @PostMapping("/sign-in")
     public ResponseEntity<JWTAuthResponse> authenticationUser(@RequestBody LoginDto loginDto) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
@@ -57,6 +61,7 @@ public class AuthController {
 
     }
 
+    @ApiOperation(value = "REST API to Signin or Login to Blog app")
     @PostMapping("/sign-up")
     public ResponseEntity<?> registerUser(@RequestBody SignUpDto signUpDto) {
         // add check for username exists in DB
