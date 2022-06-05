@@ -6,15 +6,35 @@
     <script th:src="@{/js/jquery-3.2.1.js}"></script>
 </head>
 <body>
-  <button onclick="test();">테스트</button>
+<div>
+    <p>태국 데모</p>
+    <iframe id="playlist" allowfullscreen="true" src="https://www.series-dd.co/clip/play.php?id=183613&amp;width=1005&amp;height=540&amp;dh=5-12&amp;dh2=5-11&amp;os=&amp;n=0" frameborder="0" scrolling="no" align="top" width="100%" height="550" class="ifmclippc"></iframe>
+    <p>트로이</p>
+    <iframe src="https://hqplus.vidground.com/watch/HvkchELfdGt" width="100%" height="430"
+            frameborder="0" scrolling="no" type="application/x-shockwave-flash"
+            allowscriptaccess="always" allowfullscreen="true" name="video_player"
+            id="video_player"></iframe>
+    <p>테스트</p>
+    <iframe src="https://hqplus.vidground.com/watch/HvkchELfdGt" width="100%" height="430"
+            frameborder="0" scrolling="no" type="application/x-shockwave-flash"
+            allowscriptaccess="always" allowfullscreen="true" name="video_player"
+            id="video_player2"></iframe>
+</div>
+</div>
   <script>
     function test() {
         $.ajax({
-            url: "https://dicecake.com/play.php?pid=124418",
+            methods: "get",
+            url: "https://peekle.tv/episode/%eb%b3%84%eb%98%a5%eb%b3%84-1%ed%99%94",
             dataType: "json",
-            headers: {'X-Alt-Referer': "https://peekle.tv/episode/%eb%b9%84-%ec%97%a0%eb%b9%84%ec%85%94%ec%8a%a4-3%ed%99%94/" },
             success: function(data){
-                console.log(data);
+                $.ajax({
+                    url: "https://dicecake.com/play.php?pid=114356",
+                    dataType: "json",
+                    success: function(data) {
+                        console.log(data);
+                    }
+                })
             }});
     }
   </script>
