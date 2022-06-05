@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vod 테스트입니다.</title>
+    <script th:src="@{/js/jquery-3.2.1.js}"></script>
+</head>
+<body>
+  <button onclick="test();">테스트</button>
+  <script>
+    function test() {
+        $.ajax({
+            url: "https://dicecake.com/play.php?pid=124418",
+            dataType: "json",
+            headers: {'X-Alt-Referer': "https://peekle.tv/episode/%eb%b9%84-%ec%97%a0%eb%b9%84%ec%85%94%ec%8a%a4-3%ed%99%94/" },
+            success: function(data){
+                console.log(data);
+            }});
+    }
+  </script>
+</body>
+</html>
