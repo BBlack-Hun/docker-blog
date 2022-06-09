@@ -3,6 +3,7 @@ const calculate = (function () {
     let current = 0;
     let klay = 9;
     let currentVal = 0;
+    let addLossCalc = 0;
     function test() {
         $.ajax({
             url: 'https://quotation-api-cdn.dunamu.com/v1/forex/recent?codes=FRX.KRWUSD', // ----- (1)
@@ -17,7 +18,14 @@ const calculate = (function () {
             cache: false,
             success: function (data) {
                 // console.log(data.data.closing_price);
+                let before_klay = data.data.opening_price;
                 klay = data.data.closing_price;
+                addLossCalc = (before_klay-klay) / before_klay * 100;
+                addLossCalc = addLossCalc.toFixed(2);
+                console.log(addLossCalc)
+                if (before_klay > klay) {
+                    addLossCalc *= -1;
+                }
             },
         });
         // 1달러 = 1200 * 500
@@ -28,6 +36,8 @@ const calculate = (function () {
         $('#klay').val(klay);
         $('#klay').append(`실시간 KLAY 가격 : ${klay}`);
         $('#test').html(`실시간 KLAY 가격 : $${res}`);
+
+        $('#test2').html(`실시간 KLAY 이익 or 손실 : ￦${addLossCalc}%`);
 
         $("#coin").on("propertychange change keyup paste input", function() {
             currentVal = $(this).val();
