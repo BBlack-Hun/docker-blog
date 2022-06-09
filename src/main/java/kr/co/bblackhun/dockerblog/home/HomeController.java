@@ -21,4 +21,13 @@ public class HomeController {
     public String Home2() {
         return "home2.html";
     }
+
+    @CrossOrigin()
+    @GetMapping("test2")
+    public String Home3() {
+        return "home3.html";
+    }
+
+
+
 }
