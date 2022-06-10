@@ -25,6 +25,7 @@ const calculate = (function () {
                 console.log(addLossCalc)
                 if (before_klay > klay) {
                     addLossCalc *= -1;
+                    $('#test2').css('color', 'blue');
                 }
             },
         });
@@ -37,7 +38,7 @@ const calculate = (function () {
         $('#klay').append(`실시간 KLAY 가격 : ${klay}`);
         $('#test').html(`실시간 KLAY 가격 : $${res}`);
 
-        $('#test2').html(`실시간 KLAY 이익 or 손실 : ￦${addLossCalc}%`);
+        $('#test2').html(`${addLossCalc}%`);
 
         $("#coin").on("propertychange change keyup paste input", function() {
             currentVal = $(this).val();
