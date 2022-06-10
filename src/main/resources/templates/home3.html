@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="referrer" content="no-referrer" />
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>vod 테스트입니다.</title>
     <script th:src="@{/js/jquery-3.2.1.js}"></script>
+    <script th:src="@{/js/x-frame-bypass.js}" type="module"></script>
 </head>
 <body>
 <div>
@@ -18,13 +17,8 @@
     <p>테스트5555</p>
 <!--    <iframe src="https://player4.studiouniversal.net/video/l6voYDlS68qefAy" frameborder="0" framespacing="0" marginheight="0" marginwidth="0" scrolling="no" vspace="0" allowtransparency="true" allowfullscreen="true" loading="lazy" iframe=""></iframe>-->
     <p>tv 데모</p>
-    <div style="width:100%; display:block; left: 0px;">
-<!--        <div style="position: absolute; width: 100%; background-color: black; height: 85px; z-index: 1; left: -2px;"></div>-->
-        <div style="position: relative; top: -474px; left: -369px;">
-            <iframe src="http://yjtv365.com/bbs/page.php?hid=live3" allowfullscreen="true" style='width: 1411px; height: 4800px;' scrolling="no" frameborder="0"></iframe>
-        </div>
-    </div>
-
+<!--    유부트 긁어오는 코드-->
+<!--    https://www.youtube.com/embed/6oJEv0MS8u4 -->
 </div>
 </body>
 </html>
