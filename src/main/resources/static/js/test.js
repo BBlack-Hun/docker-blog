@@ -22,7 +22,7 @@ const calculate = (function () {
                 klay = data.data.closing_price;
                 addLossCalc = (before_klay-klay) / before_klay * 100;
                 addLossCalc = addLossCalc.toFixed(2);
-                console.log(addLossCalc)
+                // console.log(addLossCalc)
                 if (before_klay > klay) {
                     addLossCalc *= -1;
                     $('#test2').css('color', 'blue');
