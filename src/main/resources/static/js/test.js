@@ -20,12 +20,16 @@ const calculate = (function () {
                 // console.log(data.data.closing_price);
                 let before_klay = data.data.opening_price;
                 klay = data.data.closing_price;
-                addLossCalc = (before_klay-klay) / before_klay * 100;
-                addLossCalc = addLossCalc.toFixed(2);
-                // console.log(addLossCalc)
+
                 if (before_klay > klay) {
+                    addLossCalc = (before_klay-klay) / before_klay * 100;
+                    addLossCalc = addLossCalc.toFixed(2);
                     addLossCalc *= -1;
                     $('#test2').css('color', 'blue');
+                } else {
+                    addLossCalc = (klay - before_klay) / before_klay * 100;
+                    addLossCalc = addLossCalc.toFixed(2);
+                    $('#test2').css('color', 'red');
                 }
             },
         });
