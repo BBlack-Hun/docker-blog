@@ -17,10 +17,16 @@
         <p id="test2"></p>
     </div>
     <div style="display: flex; ">
-        <input id="coin" name="coin" style="text-align: right"><p>개</p>
-        &nbsp;
-        <input id="money" name="money" style="text-align: right" readonly><p>원</p>
+        <input id="money" name="money" style="text-align: right" ><p>원</p>
+        <input id="coin" name="coin" style="text-align: right" readonly><p>개</p>
+
     </div>
+    <div style="display: flex; ">
+        <input id="recoin" name="money" style="text-align: right" ><p>개</p>
+        <input id="remoney" name="coin" style="text-align: right" readonly><p>원</p>
+
+    </div>
+
 
     <script th:src="@{/js/test.js}"></script>
 </body>

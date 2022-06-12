@@ -3,6 +3,7 @@ const calculate = (function () {
     let current = 0;
     let klay = 9;
     let currentVal = 0;
+    let currentVal2 = 0;
     let addLossCalc = 0;
     function test() {
         $.ajax({
@@ -36,7 +37,7 @@ const calculate = (function () {
         // 1달러 = 1200 * 500
         const res = (klay / current);
         // console.log(res);
-        $('#dollor').html(`실시간 dollor 가격 : $1US = ${current}KRW`);
+        // $('#dollor').html(`실시간 dollor 가격 : $1US = ${current}KRW`);
         $('#klay').empty();
         $('#klay').val(klay);
         $('#klay').append(`실시간 KLAY 가격 : ${klay}`);
@@ -44,11 +45,17 @@ const calculate = (function () {
 
         $('#test2').html(`${addLossCalc}%`);
 
-        $("#coin").on("propertychange change keyup paste input", function() {
+        $("#money").on("propertychange change keyup paste input", function() {
             currentVal = $(this).val();
         });
 
-        $('#money').val(currentVal * klay);
+        $('#coin').val((currentVal / klay).toFixed(8));
+
+        $("#recoin").on("propertychange change keyup paste input", function() {
+            currentVal2 = $(this).val();
+        });
+
+        $('#remoney').val((currentVal2 * klay).toFixed(8));
     }
 
     return {
