@@ -5,9 +5,11 @@ services:
     image: mysql:5.7
     environment:
       MYSQL_DATABASE: blog
-      MYSQL_USER: user
-      MYSQL_PASSWORD: 1q2w3e4r!
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    env_file:
+     - /home/chamci/docker3/.env
     volumes:
       - ./db:/var/lib/mysql
     command:
