@@ -8,6 +8,8 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    env_file:
+      - /home/chamci/docker3/.env
     volumes:
       - ./db:/var/lib/mysql
     command:
