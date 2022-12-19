@@ -29,5 +29,5 @@ jobs:
           script: |
             cd docker3
             sudo chown -R ${{ secrets.USERNAME }}:${{ secrets.USERNAME }} ./docker-blog/db
-            echo "MYSQL_USER=${{ secrets.MYSQL_USER}}\nMYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD}}" >> .env
+            echo -e "MYSQL_USER=${{ secrets.MYSQL_USER}}\nMYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD}}" > .env
             sh build_n_run.sh
